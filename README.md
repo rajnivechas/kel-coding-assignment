@@ -3,7 +3,7 @@
 Q1: Build a single-page website
 To run Angular application on local system.
 
-1. Clone it on local system.
+1. Clone 'main' branch on local system.
 2. Run 'npm install' inside 'register-user-app' folder.
 3. Run 'ng serve'.
 4. Application will be running on 'http://localhost:4200/mock.com/'.  
