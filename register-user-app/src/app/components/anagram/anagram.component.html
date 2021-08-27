@@ -1,0 +1,51 @@
+<app-header></app-header>  
+<div class="container">
+  
+    <div class="main-container mt-5">
+        <div class="row">
+            <div class="col-sm-12 pt-3 bg-white">
+                <h1 class="text-center">Check Anagram Strings</h1>
+                <form [formGroup]="anagramForm" (ngSubmit)="checkAnagram()">
+                    <div class="form-group">
+                      <label for="strOne">First String:</label>
+                      <input type="text" formControlName="strOne" class="form-control" placeholder="Enter First String" id="strOne" [ngClass]="{'is-invalid': (anagramForm.get('strOne').touched ||
+                      anagramForm.get('strOne').dirty) &&
+                      !anagramForm.get('strOne').valid }">
+                      <div class="text-danger text-left d-block error_msg mb-1" *ngIf="anagramForm.get('strOne').errors && (anagramForm.get('strOne').dirty || anagramForm.get('strOne').touched)">
+                        <span *ngIf="anagramForm.get('strOne').errors?.required">Please enter first string</span>   
+                                           
+                      </div> 
+                    </div>
+                    <div class="form-group">
+                      <label for="strTwo">Second String:</label>
+                      <input type="text" formControlName="strTwo" class="form-control" placeholder="Enter Second String" id="strTwo" [ngClass]="{'is-invalid': (anagramForm.get('strTwo').touched ||
+                      anagramForm.get('strTwo').dirty) &&
+                      !anagramForm.get('strTwo').valid }">
+                      <div class="text-danger text-left d-block error_msg mb-1" *ngIf="anagramForm.get('strTwo').errors && (anagramForm.get('strTwo').dirty || anagramForm.get('strTwo').touched)">
+                        <span *ngIf="anagramForm.get('strTwo').errors?.required">Please enter second string.</span>   
+                        
+                      </div>
+                    </div>
+                    <div class="form-group pb-3">
+                        <button type="submit" class="btn btn-sm btn-primary text-white float-right" [disabled]="!anagramForm.valid"
+                        [title]="anagramForm.valid ? 'Click to Check if strings are Anagram or not' : 'Disabled until both stringd will not be entered.'">Check Anagram</button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- {{anagramForm.value | json}} -->
+                  </form>
+            </div>           
+        </div>
+        <div class="row">
+          <div class="col-sm-12 pt-3 bg-white mt-2">
+            <h1 class="text-center">Temp Tracker</h1>
+
+            <code>
+              a = 6;
+              b = 9;
+              c = "this is the best program";
+              &#123; ddg &#125;
+            </code>
+          </div>
+          </div>
+    </div>
+</div>

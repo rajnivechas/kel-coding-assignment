@@ -1,0 +1,93 @@
+<!-- Register Component -->
+<div class="register-bg text-center"> 
+  <app-header></app-header>     
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p>
+    </ngx-spinner>
+    <div class="mask vh-100 pt-5">
+        <h1 class="text-white text-uppercase py-4 my-3 register-head">Register User</h1>
+        <div class="m-auto p-4 register-form-block display-center">
+            <img src="./assets/images/kellton-logo.png" alt="Logo" class="mb-4" />    
+            <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="text-left register-form">
+                <div class="form-group">
+                  <label for="firstName" class="font-600 color-blue">First Name</label>
+                  <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="Enter First Name" 
+                  [ngClass]="{'is-invalid': (registerForm.get('firstName').touched ||
+                    registerForm.get('firstName').dirty) &&
+                    !registerForm.get('firstName').valid }">
+                  <div class="text-danger text-left d-block error_msg mb-1" *ngIf="registerForm.get('firstName').errors && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">
+                    <span *ngIf="registerForm.get('firstName').errors?.required">First name is required</span>   
+                    <span *ngIf="registerForm.get('firstName').errors?.minlength">Character length should be grater than 5</span>                   
+                </div> 
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="font-600 color-blue">Last Name</label>
+                  <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Enter Last Name"
+                  [ngClass]="{'is-invalid': (registerForm.get('lastName').touched ||
+                    registerForm.get('lastName').dirty) &&
+                    !registerForm.get('lastName').valid }">
+
+                  <div class="text-danger text-left d-block error_msg mb-1" 
+                    *ngIf="registerForm.get('lastName').errors && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">
+                    <span *ngIf="registerForm.get('lastName').errors?.required">Last name is required</span>   
+                    <span *ngIf="registerForm.get('lastName').errors?.minlength">Character length should be grater than 5.</span>  
+                </div> 
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNo" class="font-600 color-blue">Phone #</label>
+                    <input type="tel" onkeypress="return event.charCode >= 48 && event.charCode <= 57" formControlName="phoneNo" maxlength="10" class="form-control" id="phoneNo" placeholder="Enter Phone Number"
+                    [ngClass]="{'is-invalid': (registerForm.get('phoneNo').touched ||
+                      registerForm.get('phoneNo').dirty) &&
+                      !registerForm.get('phoneNo').valid }">
+  
+                    <div class="text-danger text-left d-block error_msg mb-1" 
+                      *ngIf="registerForm.get('phoneNo').errors && (registerForm.get('phoneNo').dirty || registerForm.get('phoneNo').touched)">
+                     
+
+                      <span *ngIf="registerForm.get('phoneNo').errors?.required">Phone number is required</span>   
+                    <span *ngIf="registerForm.get('phoneNo').errors?.pattern">Phone number should be of 10 digit.</span>  
+                  </div> 
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="country" class="font-600 color-blue">Country</label>                   
+
+                      <select class="custom-select" formControlName="country" class="form-control" id="country" placeholder="Select Country"
+                      [ngClass]="{'is-invalid': (registerForm.get('country').touched ||
+                        registerForm.get('country').dirty) &&
+                        !registerForm.get('country').valid }">
+                        <option value=''>Select Country</option>
+                        <option value="IN">India</option>
+                        <option value="USA">USA</option>
+                        <option value="AUS">Australia</option>
+                      </select>
+  
+                    <div class="text-danger text-left d-block error_msg mb-1" 
+                      *ngIf="registerForm.get('country').errors && (registerForm.get('country').dirty || registerForm.get('country').touched)">
+                      <span >Country is required</span>
+                  </div> 
+                  </div>
+                  <!-- {{registerForm.value | json}} -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-primary text-white float-right" placement="top"
+                    [disabled]="!registerForm.valid"
+                    [title]="registerForm.valid ? 'Click to Register' : 'Disabled until all required fields are not filled.'"
+                    >                      
+                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                       <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                       <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                     </svg>
+                     Register </button>                     
+                </div>
+                
+                <div class="clearfix"></div>
+              </form> 
+              <div *ngIf="isRegistrationFailed" class="alert alert-danger mt-2" role="alert">
+                {{errorMsg}}
+             </div>  
+                           
+        </div>
+    </div>
+</div>

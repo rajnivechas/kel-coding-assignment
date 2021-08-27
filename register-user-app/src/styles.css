@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{background: rgb(202, 202, 202);}
+.main-container{background: #d4d3d3;}
+button:disabled,
+button[disabled]{
+  cursor: not-allowed;
+}
